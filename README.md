@@ -1,45 +1,7 @@
-import random
+Project Description – Hangman Game 🎮
+The Hangman Game is a classic word-guessing challenge implemented in Python as a simple text-based project. The main objective of this project is to allow a player to guess a randomly chosen word, one letter at a time, within a limited number of incorrect attempts. It demonstrates the use of essential Python programming concepts such as loops, conditionals, lists, strings, and randomization.
+The game begins by selecting a word at random from a predefined list of five words: python, java, swift, kotlin, and ruby. The chosen word is initially hidden from the player and represented by underscores, each standing for a letter. The player then attempts to guess letters. If the guessed letter is correct, it is revealed in its proper position(s) within the word. If the guess is incorrect, the player loses one of the six available attempts.
+The program ensures robust interaction by validating user input: only single alphabetic characters are accepted, and repeated guesses are not counted again. The player can track progress through two indicators: the updated word with revealed letters and a list of previously guessed letters. The game continues until the player either completes the word successfully or exhausts all six incorrect attempts.
+This project is an excellent demonstration of Python’s basic programming constructs. The while loop controls the flow of the game, ensuring it continues until a win or loss condition is met. The if-else statements handle decision-making, such as checking input validity, correctness of guesses, and updating the game state. Lists and strings are used effectively to represent the hidden word and manage guesses.
+Overall, this project serves as an engaging introduction to Python programming. It reinforces logical thinking, problem-solving skills, and interactive input/output handling while providing a fun and educational gaming experience.
 
-def hangman():
-    # Predefined words
-    words = ["python", "java", "swift", "kotlin", "ruby"]
-    word = random.choice(words)  # Pick a random word
-    guessed = ["_"] * len(word)  # Display blanks for the word
-    guessed_letters = []  # Store guessed letters
-    attempts = 6  # Allowed wrong guesses
-    
-    print("🎮 Welcome to Hangman!")
-    print("Word to guess:", " ".join(guessed))
-    
-    while attempts > 0 and "_" in guessed:
-        guess = input("\nGuess a letter: ").lower()
-        
-        if len(guess) != 1 or not guess.isalpha():
-            print("⚠️ Enter only a single letter.")
-            continue
-        
-        if guess in guessed_letters:
-            print("❗ You already guessed that letter.")
-            continue
-        
-        guessed_letters.append(guess)
-        
-        if guess in word:
-            print(f"✅ Good guess! '{guess}' is in the word.")
-            for i in range(len(word)):
-                if word[i] == guess:
-                    guessed[i] = guess
-        else:
-            attempts -= 1
-            print(f"❌ Wrong guess! Attempts left: {attempts}")
-        
-        print("Word:", " ".join(guessed))
-        print("Guessed letters:", ", ".join(guessed_letters))
-    
-    if "_" not in guessed:
-        print("\n🎉 Congratulations! You guessed the word:", word)
-    else:
-        print("\n💀 Game Over! The word was:", word)
-
-# Run the game
-hangman()
